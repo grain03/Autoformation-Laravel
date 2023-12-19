@@ -1,10 +1,8 @@
 ## Travail a Faire
+Nous devons suivre [ce cours](https://grafikart.fr/tutoriels/) pour apprendre Laravel.
+Et on nous demande d'apprendre par la pratique, nous allons donc créer un "repository" chaque fois que nous apprendrons un nouveau chapitre.
 
-### Nous devons suivre [ce cours](https://grafikart.fr/tutoriels/introduction-laravel-2112#autoplay) pour apprendre Laravel.
-
-##### Et on nous demande d'apprendre par la pratique, nous allons donc créer un "repository" et nous "push" vers une branche différente à chaque fois que nous apprendrons un nouveau chapitre.
-
-###### Ce cours comprend les chapitres suivants :
+### Ce cours comprend les chapitres suivants :
 
 - Introduction à Laravel
 - Structure des dossiers
