@@ -10,4 +10,4 @@
             <a class='btn btn-primary' href="{{ route('blog.show', ['slug' => $post->slug, 'post' => $post->id])}}">Lire la suite</a>
         </p>
     </article>
-@endsection
+@endsection 

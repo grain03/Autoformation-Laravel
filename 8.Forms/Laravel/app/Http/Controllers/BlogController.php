@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Posts;
 use App\Http\Requests\BlogFilterRequest;
+use App\Http\Requests\CreatePostRequest;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -12,6 +13,15 @@ use Illuminate\Support\Facades\Redirect;
 
 class BlogController extends Controller
 {
+    public function create(){
+        return view('blog.create');
+    }
+    
+    public function store(CreatePostRequest $request){
+        $post = Posts::create($request->validated());
+        return redirect()->route('blog.show', ['slug'=>$post->slug, 'post' => $post->id])->with('success', 'article a bien été sauvegardé  ');
+    }
+    
     public function index(BlogFilterRequest $request): View
     {
         $post = new Posts();
@@ -22,8 +32,6 @@ class BlogController extends Controller
 
     public function show(string $slug, Posts $post): RedirectResponse | View
     {
-
-        $post = Posts::findOrFail($post);
         if ($post->slug !== $slug) {
             return to_route('blog.show', ['slug' => $post->slug, 'id' => $post->id]);
         }

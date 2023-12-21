@@ -5,7 +5,6 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\Posts;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,8 +23,10 @@ Route::get('/', function () {
 Route::prefix('/blog')->name('blog.')->controller(BlogController::class)->group(function (){
     Route::get('/', 'index')->name('index');
     
-    
-    Route::get('/{slug}-{post}', 'show')->where([
+    Route::get('/new', 'create')->name('create');
+    Route::post('/new', 'store');
+
+    Route::get('/{slug}-{post:id}', 'show')->where([
         'post' => '[0-9]+',
         'slug' => '[a-z0-9\-]+',
     ])->name('show');

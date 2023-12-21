@@ -14,9 +14,10 @@ class BlogController extends Controller
 {
     public function index(BlogFilterRequest $request): View
     {
-        $post = new Posts();
+        dd($request->all());
+
         return view('blog.index', [
-            'posts' => $post::paginate(1),
+            'posts' => Posts::paginate(1),
         ]);
     }
 
