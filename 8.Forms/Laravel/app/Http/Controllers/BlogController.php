@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Posts;
 use App\Http\Requests\BlogFilterRequest;
-use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\FormPostRequest;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -14,15 +14,29 @@ use Illuminate\Support\Facades\Redirect;
 class BlogController extends Controller
 {
     public function create(){
-        return view('blog.create');
+        $post = new Posts();
+        $post->title = 'Bonjoure';
+ 
+        return view('blog.create', [
+            'post' => $post
+        ]);
     }
     
-    public function store(CreatePostRequest $request){
+    public function store(FormPostRequest $request){
         $post = Posts::create($request->validated());
         return redirect()->route('blog.show', ['slug'=>$post->slug, 'post' => $post->id])->with('success', 'article a bien été sauvegardé  ');
     }
     
-    public function index(BlogFilterRequest $request): View
+    public function edit(Posts $post){
+        return view('blog.edit', [
+            'post'=> $post
+        ]);
+    }
+    public function update(Posts $post,FormPostRequest $request){
+        $post->update($request->validated());
+        return redirect()->route('blog.show', ['slug'=>$post->slug, 'post' => $post->id])->with('success', 'article a bien été modifié  ');
+    }
+    public function index(): View
     {
         $post = new Posts();
         return view('blog.index', [
